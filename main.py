@@ -10,8 +10,9 @@ def index():
 def receive():
     data = request.get_json()
     print("📩 وصلك أمر:", data)
-    return "تم الاستلام"
+    return {"status": "ok"}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
+
 
