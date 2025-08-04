@@ -16,8 +16,11 @@ def index():
 @app.route('/receive', methods=['POST', 'GET'])
 def receive():
     if request.method == 'POST':
-        data = request.get_json()
-        print("📩 وصلك أمر:", data)
+        data = request.get_json(force=True)
+        print("📩 وصلك أمر:")
+        print("🔸 النوع:", data.get("type"))
+        print("🔸 من:", data.get("device"))
+        print("🔸 البيانات المشفرة:", data.get("data"))
         return {"status": "ok"}
     elif request.method == 'GET':
         if request.args.get("cmd") == "1":
@@ -29,3 +32,4 @@ def receive():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
+
